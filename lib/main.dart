@@ -19,8 +19,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Widget> scoreKeeper = [
+    Icon(Icons.check, color: Colors.green),
+    Icon(Icons.clear, color: Colors.red),
+  ];
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +44,11 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             GestureDetector(
+              onTap: () {
+                setState(() {
+                  scoreKeeper.add(Icon(Icons.check, color: Colors.green));
+                });
+              },
               child: Container(
                 padding: EdgeInsets.all(10),
                 color: Colors.green,
@@ -51,6 +59,11 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 10),
             GestureDetector(
+              onTap: () {
+                setState(() {
+                  scoreKeeper.add(Icon(Icons.clear, color: Colors.red));
+                });
+              },
               child: Container(
                 padding: EdgeInsets.all(10),
                 color: Colors.red,
@@ -58,6 +71,9 @@ class _HomePageState extends State<HomePage> {
                     child: Text('FALSE',
                         style: TextStyle(fontSize: 24, color: Colors.white))),
               ),
+            ),
+            Row(
+              children: scoreKeeper,
             ),
           ],
         ),
