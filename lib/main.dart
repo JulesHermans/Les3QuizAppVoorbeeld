@@ -20,21 +20,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  QuestionBank bank = new QuestionBank();
   List<Widget> scoreKeeper = [];
-  List<String> questions = [
-    'Sommige katten zijn allergisch voor mensen',
-    'kan een koe een trap naar beneden laten nemen, maar niet naar boven',
-    'Een kwart van de menselijke botten bevinden zich in de voet',
-  ];
 
-  int questionCounter = 0;
   void updateQuiz(bool userAnswer) {
-    if (userAnswer == true) {
+    bool correctAnswer = bank.getCurrentAnswer();
+    if (userAnswer == correctAnswer) {
       scoreKeeper.add(Icon(Icons.check, color: Colors.green));
     } else {
       scoreKeeper.add(Icon(Icons.clear, color: Colors.red));
     }
-    questionCounter++;
+    bank.nextQuestion();
   }
 
   @override
@@ -50,7 +46,7 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: Center(
                 child: Text(
-                  questions[questionCounter],
+                  bank.getCurrentQuestion(),
                   style: TextStyle(fontSize: 30, color: Colors.white),
                   textAlign: TextAlign.center,
                 ),

@@ -38,7 +38,7 @@ class QuestionBank {
   }
 
   void nextQuestion() {
-    if (currentQuestion <= questions.length - 1) {
+    if (currentQuestion < questions.length - 1) {
       currentQuestion++;
     }
   }
