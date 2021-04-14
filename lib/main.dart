@@ -19,11 +19,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Widget> scoreKeeper = [
-    Icon(Icons.check, color: Colors.green),
-    Icon(Icons.clear, color: Colors.red),
+  List<Widget> scoreKeeper = [];
+  List<String> questions = [
+    'Sommige katten zijn allergisch voor mensen',
+    'kan een koe een trap naar beneden laten nemen, maar niet naar boven',
+    'Een kwart van de menselijke botten bevinden zich in de voet',
   ];
-
+  int questionCounter = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +39,7 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: Center(
                 child: Text(
-                  "The question of the quiz should display here later",
+                  questions[questionCounter],
                   style: TextStyle(fontSize: 30, color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
@@ -47,6 +49,7 @@ class _HomePageState extends State<HomePage> {
               onTap: () {
                 setState(() {
                   scoreKeeper.add(Icon(Icons.check, color: Colors.green));
+                  questionCounter++;
                 });
               },
               child: Container(
@@ -62,6 +65,7 @@ class _HomePageState extends State<HomePage> {
               onTap: () {
                 setState(() {
                   scoreKeeper.add(Icon(Icons.clear, color: Colors.red));
+                  questionCounter++;
                 });
               },
               child: Container(
