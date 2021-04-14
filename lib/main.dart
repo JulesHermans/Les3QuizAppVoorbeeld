@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'libary.dart';
 
 void main() {
   runApp(QuizApp());
@@ -25,7 +26,17 @@ class _HomePageState extends State<HomePage> {
     'kan een koe een trap naar beneden laten nemen, maar niet naar boven',
     'Een kwart van de menselijke botten bevinden zich in de voet',
   ];
+
   int questionCounter = 0;
+  void updateQuiz(bool userAnswer) {
+    if (userAnswer == true) {
+      scoreKeeper.add(Icon(Icons.check, color: Colors.green));
+    } else {
+      scoreKeeper.add(Icon(Icons.clear, color: Colors.red));
+    }
+    questionCounter++;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,8 +59,7 @@ class _HomePageState extends State<HomePage> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  scoreKeeper.add(Icon(Icons.check, color: Colors.green));
-                  questionCounter++;
+                  updateQuiz(true);
                 });
               },
               child: Container(
@@ -64,8 +74,7 @@ class _HomePageState extends State<HomePage> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  scoreKeeper.add(Icon(Icons.clear, color: Colors.red));
-                  questionCounter++;
+                  updateQuiz(false);
                 });
               },
               child: Container(
